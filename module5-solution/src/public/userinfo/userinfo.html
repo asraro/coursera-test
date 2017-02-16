@@ -1,0 +1,25 @@
+<div ng-controller="UserInfoController as userCtrl">
+  <h1>Registered Information</h1>
+
+  <div ng-if="!userCtrl.user">
+    Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a> <br><br>
+  </div>
+
+  <div ng-if="userCtrl.user">
+    First Name : {{ userCtrl.user.firstName }} <br>
+    Last Name  : {{ userCtrl.user.lastName }} <br>
+    Email      : {{ userCtrl.user.email }} <br>
+    Phone      : {{ userCtrl.user.phone }} <br>
+    Fav Dish   : {{ userCtrl.user.favDish }} <br><br>
+    <div>
+      <img width="200" height="200" ng-src="{{userCtrl.basePath}}/images/{{userCtrl.user.favDish}}.jpg" alt="{{userCtrl.user.favDish.name}}">
+    </div>
+    <br>
+    <div>
+      Favorite Dish Name: {{ userCtrl.user.favDishName }} <br>
+      Favorite Dish Description: {{ userCtrl.user.favDishDesc }}
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,75 @@
+<div ng-controller="SignupController as signupCtrl">
+
+  <h1>Signup for the newsletter of the restaurant</h1>
+
+  <fieldset>
+    <legend>Signup Form</legend>
+    <form name='regForm'  novalidate>
+
+      First Name:
+      <input type="text" name="firstname" placeholder="Enter your First Name"
+        ng-model="signupCtrl.user.firstname"
+        required
+        ng-maxlength="10">
+        <span ng-if="regForm.firstname.$error.maxlength && regForm.firstname.$touched">
+          First Name must not be longer than 10 characters
+        </span>
+        <br><br>
+
+      Last Name:
+      <input type="text" name="lastname" placeholder="Enter your Last Name"
+        ng-model="signupCtrl.user.lastname"
+        required
+        ng-maxlength="10">
+        <span ng-if="regForm.lastname.$error.maxlength && regForm.lastname.$touched">
+          Last Name must not be longer than 10 characters
+        </span>
+      <br><br>
+
+      Email:
+      <input type="email" name="email" placeholder="Email"
+        ng-model="signupCtrl.user.email"
+        required>
+        <span ng-if="regForm.email.$invalid && regForm.email.$touched">
+          Must be a valid email address: handle@domain format
+        </span>
+        <br><br>
+
+      Phone :
+      <input type="text" name="phone" placeholder="Phone ###-###-####"
+        ng-model="signupCtrl.user.phone"
+        pattern="(\d{3})-(\d{3})-(\d{4})">
+        <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+          Phone must be in the format ###-###-####.
+        </span>
+        <br><br>
+
+      Enter Your Favorite Dish:
+      <input type="text" name="favdish" placeholder="Menu Number - A1, SP2"
+        ng-model="signupCtrl.user.favdish"
+        required>
+        <span>
+          {{ signupCtrl.errorMessage }}
+        </span>
+        <br><br>
+
+      <button
+        ng-disabled="regForm.$invalid"
+        ng-click="signupCtrl.checkDish()">Submit</button>
+
+        <!-- <div style="margin-top: 10px;">
+          Form valid? {{ regForm.$valid }}
+        </div> -->
+    </form>
+  </fieldset>
+
+  <div ng-if="signupCtrl.completed">
+    <h3>Your information has been saved</h3>
+    First Name: {{ signupCtrl.user.firstname }} <br>
+    Last Name : {{ signupCtrl.user.lastname }} <br>
+    Email     : {{ signupCtrl.user.email }} <br>
+    Phone     : {{ signupCtrl.user.phone }} <br>
+    Fav Dish  : {{ signupCtrl.user.favdish }}
+  </div>
+
+</div>
